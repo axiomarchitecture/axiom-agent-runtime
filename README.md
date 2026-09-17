@@ -1,3 +1,6 @@
+Klar — hier **komplett fertig für Copy & Paste**:
+
+````markdown
 # Axiom Agent Runtime
 
 > **Jev proposes. Axiom authorizes. Argent enforces.**
@@ -20,7 +23,11 @@ ExecutionPlan
 Silverscript
      ↓
    Kaspa
-Structured Agent Decision
+````
+
+## Structured Agent Decision
+
+```text
 Jev
 ├─ action      BUY
 ├─ asset       KAS
@@ -28,50 +35,63 @@ Jev
 ├─ currency    USD
 ├─ condition   price < $0.04
 └─ confidence  0.95
+```
 
 Jev interprets intent and produces structured variables.
 
-Axiom turns those variables into deterministic, auditable authorization.
+Axiom turns those variables into **deterministic, auditable authorization**.
 
+```text
 Jev decision
      ↓
 Axiom policy
      ↓
 APPROVED → READY
+```
 
 If a rule is violated:
 
+```text
 REJECTED → BLOCKED
-What it demonstrates
+```
 
-Shows how a structured decision from Jev can be safely authorized and prepared for covenant-native execution on Kaspa.
+## What it demonstrates
 
-The goal is a simple boundary between probabilistic agent intelligence and deterministic economic execution.
+Shows how a structured decision from Jev can be **safely authorized and prepared for covenant-native execution on Kaspa**.
 
-Prototype
-Real TypeSafe / Jev API
-Structured decision parsing
-Deterministic policy
-Budget & condition checks
-Audit trail
-Argent execution boundary
-AxiomAgent → Silverscript compilation
+The goal is a simple boundary between **probabilistic agent intelligence and deterministic economic execution**.
 
-Working reference prototype. Real Jev is connected. Argent/Silverscript execution is prepared but not yet broadcasting.
+## Prototype
 
-Run
+* Real TypeSafe / Jev API
+* Structured decision parsing
+* Deterministic policy
+* Budget & condition checks
+* Audit trail
+* Argent execution boundary
+* AxiomAgent → Silverscript compilation
+
+**Working reference prototype. Real Jev is connected. Argent/Silverscript execution is prepared but not yet broadcasting.**
+
+## Run
+
+```bash
 npm install
 npm run check
 npm run dev
+```
 
-Requires TYPESAFE_API_KEY.
+Requires `TYPESAFE_API_KEY`.
 
+```text
 Probabilistic intelligence
             ↓
 Deterministic authorization
             ↓
 Constrained execution
+```
 
-Jev → Axiom → Argent → Silverscript
+**Jev → Axiom → Argent → Silverscript**
 
-
+```
+```
