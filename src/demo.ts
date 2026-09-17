@@ -1,6 +1,6 @@
 import { AxiomCore } from "./core/core.js";
 import { RealJevAdapter } from "./jev/real.js";
-import { MockExecutionAdapter } from "./execution/mock.js";
+import { ArgentExecutionAdapter } from "./execution/argent.js";
 
 const jev = new RealJevAdapter({
   apiKey: process.env.TYPESAFE_API_KEY ?? "",
@@ -14,7 +14,7 @@ const core = new AxiomCore({
   minimumConfidence: 0.90
 });
 
-const execution = new MockExecutionAdapter();
+const execution = new ArgentExecutionAdapter();
 
 async function run(input: string, observedPrice: number): Promise<void> {
   console.log("\n--- INPUT ---");

@@ -1,0 +1,36 @@
+// Axiom Agent
+//
+// Minimal on-chain identity and capability state for an
+// autonomous economic agent controlled through Axiom.
+
+state AxiomAgentState {
+    byte[32] agent_id;
+    byte[32] controller_id;
+    byte[32] capabilities_digest;
+
+    int budget_limit;
+    int budget_spent;
+    int generation;
+}
+
+actor AxiomAgent owns AxiomAgentState {
+    entry update(AxiomAgentState next_agent) emits {
+        agent: AxiomAgent,
+    } {
+        require(next_agent.agent_id == agent_id);
+        require(next_agent.controller_id == controller_id);
+        require(next_agent.capabilities_digest == capabilities_digest);
+
+        require(next_agent.budget_spent >= budget_spent);
+        require(next_agent.budget_spent <= next_agent.budget_limit);
+
+        require(next_agent.generation == generation + 1);
+
+        unrestricted(agent.value);
+        become agent <- AxiomAgent(next_agent);
+    }
+}
+
+app Axiom {
+    actor AxiomAgent;
+}
