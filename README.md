@@ -29,7 +29,7 @@ Jev
 ├─ condition   price < $0.04
 └─ confidence  0.95
 
-Jev can interpret the intent and produce structured variables.
+Jev interprets intent and produces structured variables.
 
 Axiom turns those variables into deterministic, auditable authorization.
 
@@ -42,6 +42,12 @@ APPROVED → READY
 If a rule is violated:
 
 REJECTED → BLOCKED
+What it demonstrates
+
+Shows how a structured decision from Jev can be safely authorized and prepared for covenant-native execution on Kaspa.
+
+The goal is a simple boundary between probabilistic agent intelligence and deterministic economic execution.
+
 Prototype
 Real TypeSafe / Jev API
 Structured decision parsing
@@ -51,13 +57,8 @@ Audit trail
 Argent execution boundary
 AxiomAgent → Silverscript compilation
 
-No real funds. No broadcast. No testnet.
+Working reference prototype. Real Jev is connected. Argent/Silverscript execution is prepared but not yet broadcasting.
 
-Probabilistic intelligence
-            ↓
-Deterministic authorization
-            ↓
-Constrained execution
 Run
 npm install
 npm run check
@@ -65,6 +66,12 @@ npm run dev
 
 Requires TYPESAFE_API_KEY.
 
-The prototype is intentionally small: the goal is to demonstrate the boundary and its potential for autonomous economic workflows.
+Probabilistic intelligence
+            ↓
+Deterministic authorization
+            ↓
+Constrained execution
 
 Jev → Axiom → Argent → Silverscript
+
+
