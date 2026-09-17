@@ -89,3 +89,5 @@ Constrained execution
 ```
 
 Jev → Axiom → Argent → Silverscript
+
+TypeSafe / Jev is an independent third-party decision layer; it is not part of Axiom.
