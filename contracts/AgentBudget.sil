@@ -1,0 +1,16 @@
+// Axiom AgentBudget — initial Silverscript design skeleton.
+//
+// This file is intentionally a design-level contract until the exact
+// Silverscript/Toccata project conventions used by the target deployment
+// are pinned to a tested compiler version.
+//
+// Intended invariants:
+// 1. An agent may spend no more than the configured per-spend limit.
+// 2. Total spend cannot exceed the remaining budget.
+// 3. Only an authorized asset/recipient can be used.
+// 4. State transitions are explicit and auditable.
+// 5. A rejected Axiom decision must never produce an executable transition.
+//
+// Do NOT deploy this skeleton with real funds.
+// The next implementation step is to compile and test it against the
+// current official Silverscript toolchain.

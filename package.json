@@ -1,0 +1,18 @@
+{
+  "name": "axiom-agent-runtime",
+  "version": "0.1.0",
+  "private": false,
+  "description": "A small, model-agnostic runtime for agent decisions, policy enforcement and deterministic execution planning.",
+  "type": "module",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/demo.js",
+    "dev": "tsx src/demo.ts",
+    "check": "tsc -p tsconfig.json --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}

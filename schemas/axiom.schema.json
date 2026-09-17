@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://axiomarchitecture.github.io/axiom-agent-runtime/schemas/axiom.schema.json",
+  "title": "Axiom Agent Runtime Transaction",
+  "type": "object",
+  "required": [
+    "version",
+    "transactionId",
+    "actor",
+    "intent",
+    "authorization",
+    "information",
+    "escrow",
+    "payment",
+    "settlement",
+    "audit"
+  ],
+  "properties": {
+    "version": { "type": "string" },
+    "transactionId": { "type": "string", "minLength": 1 },
+    "actor": {
+      "type": "object",
+      "required": ["id", "type"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "type": { "enum": ["human", "agent", "service"] }
+      },
+      "additionalProperties": false
+    },
+    "intent": {
+      "type": "object",
+      "required": ["action", "asset", "amount", "currency"],
+      "properties": {
+        "action": { "enum": ["BUY", "SELL", "PAY", "TRANSFER"] },
+        "asset": { "type": "string", "minLength": 1 },
+        "amount": { "type": "number", "exclusiveMinimum": 0 },
+        "currency": { "type": "string", "minLength": 1 },
+        "condition": {
+          "type": "object",
+          "required": ["operator"],
+          "properties": {
+            "operator": { "enum": ["LT", "LTE", "GT", "GTE", "EQ", "NONE"] },
+            "value": { "type": "number" }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "authorization": {
+      "type": "object",
+      "required": ["authorized", "maxPerSpend", "budgetRemaining"],
+      "properties": {
+        "authorized": { "type": "boolean" },
+        "maxPerSpend": { "type": "number", "minimum": 0 },
+        "budgetRemaining": { "type": "number", "minimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    "information": {
+      "type": "object",
+      "required": ["price", "source", "observedAt"],
+      "properties": {
+        "price": { "type": "number", "minimum": 0 },
+        "source": { "type": "string", "minLength": 1 },
+        "observedAt": { "type": "string", "format": "date-time" }
+      },
+      "additionalProperties": false
+    },
+    "escrow": {
+      "type": "object",
+      "required": ["reserved", "amount"],
+      "properties": {
+        "reserved": { "type": "boolean" },
+        "amount": { "type": "number", "minimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    "payment": {
+      "type": "object",
+      "required": ["status", "amount"],
+      "properties": {
+        "status": { "enum": ["PENDING", "AUTHORIZED", "EXECUTED", "REJECTED"] },
+        "amount": { "type": "number", "minimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    "settlement": {
+      "type": "object",
+      "required": ["status"],
+      "properties": {
+        "status": { "enum": ["PENDING", "SETTLED", "FAILED"] },
+        "reference": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "audit": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["stage", "status", "timestamp", "message"],
+        "properties": {
+          "stage": { "type": "string" },
+          "status": { "type": "string" },
+          "timestamp": { "type": "string", "format": "date-time" },
+          "message": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}
