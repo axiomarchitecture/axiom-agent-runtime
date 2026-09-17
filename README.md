@@ -20,31 +20,51 @@ ExecutionPlan
 Silverscript
      ↓
    Kaspa
-Example
-"Buy 150 KAS if price < $0.04"
+Structured Agent Decision
+Jev
+├─ action      BUY
+├─ asset       KAS
+├─ amount      150
+├─ currency    USD
+├─ condition   price < $0.04
+└─ confidence  0.95
 
-Jev      → structured decision
-Axiom    → deterministic policy
-Argent   → execution boundary
+Jev can interpret the intent and produce structured variables.
 
+Axiom turns those variables into deterministic, auditable authorization.
+
+Jev decision
+     ↓
+Axiom policy
+     ↓
 APPROVED → READY
 
-If the policy is violated:
+If a rule is violated:
 
 REJECTED → BLOCKED
-
 Prototype
 Real TypeSafe / Jev API
-Deterministic Axiom policy
+Structured decision parsing
+Deterministic policy
+Budget & condition checks
 Audit trail
 Argent execution boundary
 AxiomAgent → Silverscript compilation
 
 No real funds. No broadcast. No testnet.
 
-Jev → Axiom → Argent → Silverscript
+Probabilistic intelligence
+            ↓
+Deterministic authorization
+            ↓
+Constrained execution
+Run
 npm install
 npm run check
 npm run dev
 
 Requires TYPESAFE_API_KEY.
+
+The prototype is intentionally small: the goal is to demonstrate the boundary and its potential for autonomous economic workflows.
+
+Jev → Axiom → Argent → Silverscript
