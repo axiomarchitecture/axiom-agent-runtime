@@ -16,17 +16,22 @@ const axiom = new AxiomCore({
 
 const argent = new ArgentExecutionAdapter();
 
+function section(title: string): void {
+  console.log(`\n${"═".repeat(56)}`);
+  console.log(` ${title}`);
+  console.log(`${"═".repeat(56)}`);
+}
+
 async function run(input: string, observedPrice: number): Promise<void> {
-  console.log("\n========================================");
-  console.log("AXIOM AGENT RUNTIME");
-  console.log("========================================");
+  section("AXIOM AGENT RUNTIME");
 
   console.log("\nINTENT");
-  console.log(input);
+  console.log(`> ${input}`);
 
   const decision = await jev.decide(input);
 
   console.log("\nTYPEsafe / JEV");
+  console.log("✓ Structured decision received");
   console.log(JSON.stringify(decision, null, 2));
 
   const result = axiom.evaluate({
@@ -41,19 +46,42 @@ async function run(input: string, observedPrice: number): Promise<void> {
   });
 
   console.log("\nAXIOM");
-  console.log(JSON.stringify(result.plan, null, 2));
 
-  console.log("\nAUDIT");
-  console.log(JSON.stringify(result.audit, null, 2));
+  for (const event of result.audit) {
+    if (event.stage === "INTENT") continue;
+
+    const symbol = event.status === "PASSED" || event.status === "APPROVED"
+      ? "✓"
+      : event.status === "FAILED" || event.status === "REJECTED"
+        ? "✗"
+        : "•";
+
+    console.log(`${symbol} ${event.stage}: ${event.message}`);
+  }
+
+  console.log("\nAUTHORIZATION");
+  console.log(
+    result.plan.status === "APPROVED"
+      ? "✓ APPROVED"
+      : "✗ REJECTED"
+  );
+
+  console.log("\nEXECUTION PLAN");
+  console.log(JSON.stringify(result.plan, null, 2));
 
   const prepared = await argent.prepare(result.plan);
 
   console.log("\nARGENT");
-  console.log(JSON.stringify(prepared, null, 2));
+  console.log(
+    prepared.status === "READY"
+      ? "✓ READY"
+      : "✗ BLOCKED"
+  );
+  console.log(prepared.message);
 
   console.log("\nSILVERSCRIPT / ON-CHAIN");
-  console.log("Argent contract is compiled separately.");
-  console.log("No real transaction was broadcast.");
+  console.log("✓ Argent contract boundary compiled");
+  console.log("○ Transaction not broadcast");
 }
 
 await run(
