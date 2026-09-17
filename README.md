@@ -19,7 +19,8 @@ ExecutionPlan
      ↓
 Silverscript
      ↓
-   Kaspa
+```
+Kaspa
 Structured Agent Decision
 Jev
 ├─ action      BUY
