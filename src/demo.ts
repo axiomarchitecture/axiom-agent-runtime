@@ -1,8 +1,10 @@
 import { AxiomCore } from "./core/core.js";
-import { MockJevAdapter } from "./jev/mock.js";
+import { RealJevAdapter } from "./jev/real.js";
 import { MockExecutionAdapter } from "./execution/mock.js";
 
-const jev = new MockJevAdapter();
+const jev = new RealJevAdapter({
+  apiKey: process.env.TYPESAFE_API_KEY ?? "",
+});
 
 const core = new AxiomCore({
   maxPerSpend: 200,
